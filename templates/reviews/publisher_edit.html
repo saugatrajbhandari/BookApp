@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Publisher
+{% endblock %}
+
+
+{% block content %}
+    {% for message in messages %}
+    <p><em>{{ message.level_tag|title }}:</em> {{ message }}</p>
+    {% endfor %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </p>
+    </form>
+{% endblock %}

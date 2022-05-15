@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Book Media edit
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="post" {% if is_file_upload %}
+ enctype="multipart/form-data"{% endif %}>
+    {% csrf_token %}
+    {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% if instance %}Save{% else %}Create{% endif %}</button>
+    </form>
+
+{% endblock %}

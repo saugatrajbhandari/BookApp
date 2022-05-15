@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Booky</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+            <li class="nav-item mx-3">
+              <a class="nav-link btn btn-primary px-3 text-white" href="{% url 'book_create' %}">Create Book</a>
+                </li>
+              <li class="nav-item mx-3">
+              <a class="nav-link btn btn-info px-3 text-white" href="{% url 'publisher_create' %}">Create Publisher</a>
+              </li>
+          {% endif %}
+
+      </ul>
+      <form class="d-flex" action="{% url 'book_search' %}">
+        <input class="form-control me-2" type="search1" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+        <ul class="navbar-nav mx-4 ">
+            {% if not user.is_authenticated %}
+                <li class="nav-item mx-3">
+                <a class="nav-link btn btn-primary px-3 text-white" href="{% url 'login' %}">Login</a>
+                </li>
+
+            {% else %}
+                <li class="nav-item">
+                <a class="nav-link text-info"  href="{% url 'profile' %}"> User: {{ user.username }}</a>
+                </li>
+                <li class="nav-item mx-3">
+                <a class="nav-link btn btn-secondary px-3 text-white" href="{% url 'logout' %}">Logout</a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+            <a class="nav-link btn btn-danger px-3 text-white" href="{% url 'signup' %}">Register</a>
+                </li>
+
+
+        </ul>
+    </div>
+  </div>
+</nav>
